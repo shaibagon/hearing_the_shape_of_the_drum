@@ -452,6 +452,14 @@
                 /*padding-bottom: 5px; 
                 padding-left: 25px;*/
             }
+            .bottom-labels th:nth-child(2)
+            {
+                padding-left: 17px;
+            }
+            .bottom-labels th:last-child {
+                position: relative;
+                left: 19px; /* adjust as needed */
+            }
             table tbody tr td {
                 padding-bottom: 0; 
             }
@@ -490,7 +498,7 @@
                 
                 background: rgba(255, 255, 255, 0.9);
                 border: none;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
                 color: #0f172a;
                 border-radius: 50%;
                 width: 30px;
@@ -800,7 +808,7 @@
                 <h1 class="subtitle">
                     <b>TL;DR:</b> We significantly improve speckle-based sound recovery from ordinary, acoustically poor objects by fusing signals from many surface points using a physics-guided vibration model.
                 </h1>
-                <p> Prior visual vibrometry focused on “easy” objects with strong, clean vibration responses (e.g., a chip bag <b>(click the left spectrogram)</b>). But most real-world objects behave very differently: they <i>resonate, distort, and suppress</i> large parts of the sound signal <b>(click the middle spectrogram)</b>. </p> <p> We introduce a physics-guided model that links <b>multi-point, multi-axis surface vibrations</b> to the underlying sound, and invert it to recover clear audio. By fusing many weak, distorted vibration signals, we reconstruct sound from everyday solid objects that previously yeilded poor recordings.
+                <p> Prior visual vibrometry focused on “easy” objects with strong, clean vibration responses (e.g., a chip bag <b>(click the left spectrogram)</b>). But most real-world objects behave very differently: they <i>resonate, distort, and suppress</i> large parts of the sound signal spectrum <b>(click the middle spectrogram)</b>. </p> <p> We introduce a physics-guided model that links <b>multi-point, multi-axis surface vibrations</b> to the underlying sound, and invert it to recover clear audio. By fusing many weak, distorted vibration signals, we reconstruct sound from everyday solid objects that previously yeilded poor recordings.
             </div>
             <div class="teaser-image" style="position: relative;">
             <div class="play-buttons-overlay">
@@ -867,7 +875,7 @@
                     <b>Short answer: NO!</b><br />
                     The degradation is not just measurement noise -- it is
                     inherent to the physical nature of a vibrating surface. Naively averaging the signal from multiple points, or even
-                    using classic delay-and-sum approaches yeilds even worse sounding results <b>(click below to hear)</b>. In the next Section, we explain the intuition for why that is.
+                    using classic delay-and-sum approaches may yeild even worse sounding results <b>(click below to hear)</b>. In the next Section, we explain the intuition for why that is.
                 </p>
                 <div class="teaser-image" style="position: relative;">
                     <div class="play-buttons-overlay">
@@ -932,8 +940,8 @@
                     The vibrations we measure on the object's surface can
                     be modeled as a combination of the object's resonant
                     modes.
-                    Each mode comprises a shape and a frequency , determining its temporal
-                    oscillations. The mode coefficients q(t) determine the instantaneous deformation shape at time t.
+                    Each mode comprises a shape and a frequency, determining its temporal
+                    oscillations. The mode coefficients q(t) determine the instantaneous shape deformation at time t.
                 </p>
             </div>
                         <div class="teaser-image">
@@ -941,12 +949,12 @@
             </div>
                 <div class="side-by-side2">
                 <p>
-                Our camera measures a quantity proportional to the spatial surface gradients at a grid of surface points.
+                Our camera measures a quantity proportional to the <i>spatial surface gradients</i> at a grid of surface points.
                 </p>
                 <img src="graphics/ppt_based_graphics/our_meas.png" alt="spectrogram example" class="side-image" width=500px>
             </div>
             <p>
-            The graphics below illustrate the challenge we face when fusing signals from multiple points and the intuition behind our solution. In general, all modes may be active simultaneously when the drum vibrates, but below we focus on only two modes having frequencies 198Hz and 411Hz. Our camera measured vibrations at 100 grid points on the drumhead’s surface, with each point providing a 2D signal illustrated by the quiver plots below.</p>
+            The graphics below illustrate the challenge we face when fusing signals from multiple points and the intuition behind our solution. In general, all modes may be active simultaneously when the drum vibrates, but below we focus on only two modes having frequencies 198Hz and 411Hz (taken from real data). Our camera measured vibrations at 100 grid points on the drumhead’s surface, with each point providing a 2D signal illustrated by the quiver plots below.</p>
             <p> 
            Now, let’s focus on the yellow and cyan grid points. In the first mode (198Hz), these two points have opposite phases, while in the second mode, their phases are in sync. This means that if we sum the raw signals from these two points, as is, the 198Hz component of our signal will be squashed by destructive interference, while the 411Hz component will be constructively amplified. This is why simple averaging yields a poor recovery.</p>
 
@@ -1137,7 +1145,7 @@
             </tbody>
             </table>            
             <p>
-                To partially covered ones:
+                to partially covered ones:
             </p>
                 <table class='grid'>
                 <colgroup>
@@ -1301,7 +1309,7 @@
             </table>            
 
             <p>
-                Different materials, e.g., metal:
+                and various materials, like metal:
             </p>                   
                 <table class='grid'>
                 <colgroup>
@@ -1359,7 +1367,7 @@
             </table>            
 
             <p>
-                Our system is also robust to settings beyond our basic assumptions, like multiple sound sources:
+                Our system can also handle multiple sound sources:
             </p>                   
                 <table class='grid'>
                 <colgroup>
@@ -1369,9 +1377,24 @@
                 <tbody>
                 <tr>
                 <td class="cell-setup">
+                  <div class='spec-wrap' id='drum14-Single' style="position: relative;">
+                    <div class="play-buttons-overlay">
+                        <button class="play-btn-static" 
+                            style="left: 85%; top: 60%;" 
+                            data-audio="#aud-drum_stereo_right">▶</button>
+                        <div id="audio-dial" class="audio-dial"></div>
+                    </div>
+                    <div class="play-buttons-overlay">
+                        <button class="play-btn-static" 
+                            style="left: 5%; top: 60%;" 
+                            data-audio="#aud-drum_stereo_left">▶</button>
+                        <div id="audio-dial" class="audio-dial"></div>
+                    </div>
                     <div class="setup-wrap">
                     <img loading="lazy" src="html_assets/results/setup/drum14_blk.png" alt="setup drum14"/>
                     </div>
+                    <audio id='aud-drum_stereo_left' preload='none' src='html_assets/OFFICIAL_AUDIO_RESULTS/Two_channel_How_can_I_dance_input/left.wav'></audio>
+                    <audio id='aud-drum_stereo_right' preload='none' src='html_assets/OFFICIAL_AUDIO_RESULTS/Two_channel_How_can_I_dance_input/right.wav'></audio>
                 </td>
                 <td class='cell-spec'>
                   <div class='spec-wrap' id='drum14-Single' style="position: relative;">
@@ -1418,7 +1441,7 @@
 
 
             <p>
-                Even beyond thin plates, working with a solid foam object:
+                and even provides denoised recordings beyond thin plates (our model's assumption):
             </p>                   
                 <table class='grid'>
                 <colgroup>
@@ -1481,7 +1504,8 @@
             <div class="section">
                 <h1 class="subtitle">How far are we from <i>best possible recovery?</i></h1>
                 <p>
-                    To answer this question, we developed a procedure to estimate the transfer function between the sound source and each 1D measurement directly. 
+                    So have we solved speckle-based sound recovery? Short answer: No.<br />
+                    To answer the question above, we developed a procedure to estimate the transfer function between the sound source and each 1D measurement directly. 
                     This can be achieved by playing a known reference <it>calibration</it> sound in the scene, while recording its resulting vibrations. 
                     The known reference signal allows us to invert the response at each point independently, then average the inverted signals to reconstruct the audio.
                 </p>
@@ -1550,24 +1574,19 @@
                             </tr>
                         </tbody>
                     </table>
-            </div>
-            <h3>Can you do better?</h3>
             <p>
-                As you can see, the calibrated recovery is slightly better, especially in recovering high-frequencies. 
-                So there&apos;s still room for improvement. Can <b>you</b> do it? 
+                As you can hear, the calibrated recovery is slightly better, especially in recovering high-frequencies. 
+                So there's still room for improvement. Can <b>you</b> slay this challenge?
             </p>
-            <hr>
 
+            </div>
+            <hr>
             <!-- Insights -->
             <div class="section">
-                <h1 class="subtitle">Insights from our experiments.</h1>
+                <h1 class="subtitle">BTW: How sensitive are you to the recovered modes?</h1>
                 <p>
-                    Extracting modes from different sources affect recovery.</br>
-                    The easiest way is to use a broadband "clap" signal (click spectrogram (a)).
-                    However, using the original recording works well enough (click spectrogram (b)).</br>
-                    Failing to detect some of the modes, may somewhat degrade the reconstruction quality (click spectrogram (c)).
-                    Yet, flasely adding spurious mode frequencies introduces pronounced artifacts and unnatural resonances  (click spectrogram (d)).</br>
-                    In other words, having the right frequencies matters more than having all of them.
+                    Our method is affected by the quality of the estimated modes. Recovering the modes is easiest from a broadband signal, such as a “clap”, “snap”, or “bang” sound  <b>(click spectrogram (a))</b>. However, using the original recording may work just as well <b>(click spectrogram (b))</b>. </br>Failing to detect some of the modes, may somewhat degrade the reconstruction quality <b>(click spectrogram (c))</b>.
+                    Yet, falsely adding spurious mode frequencies introduces pronounced artifacts and unnatural resonances  <b>(click spectrogram (d))</b>.</br>In other words, having the right frequencies matters more than having all of them.
                 </p>
                 <!--p>
                     Our experiments reveal several interesting factors. 
@@ -1602,7 +1621,7 @@
                             <audio id='aud-fig6-clap' preload='metadata' src='html_assets/results/fig_6_html/u_hat_from_clap.wav'></audio>
                         </div>
                     </div>
-                    <div class="caption">(a) Reconstruction using modes from a clap</div>
+                    <div class="caption">(a) sound recovery using modes from a "clap" sound</div>
                 </div>
 
                 <!-- Card 2: Reconstruction using modes from signal itself -->
@@ -1628,7 +1647,7 @@
                             <audio id='aud-fig6-golden' preload='metadata' src='html_assets/results/fig_6_html/u_hat_from_golden.wav'></audio>
                         </div>
                     </div>
-                    <div class="caption">(b) reconstruction using modes from signal itself</div>
+                    <div class="caption">(b) sound recovery using modes from the signal itself</div>
                 </div>
 
                 <!-- Card 3: removing 20% of the modes -->
