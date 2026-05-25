@@ -259,19 +259,70 @@
                 .container {
                     margin: 0;
                     border-radius: 0;
-                    padding: 40px 20px;
+                    padding: 30px 20px;
                 }
 
                 .title {
-                    font-size: 1.8em;
+                    font-size: 1.5em;
+                    line-height: 1.25;
+                }
+                
+                .subtitle {
+                    font-size: 1.3em;
                 }
 
                 .authors a {
-                    margin-right: 10px;
+                    margin-right: 0px; 
+                }
+
+                /* 2. Increase sizes and strictly center the text blocks */
+                .authors {
+                    font-size: 1.1em;
+                    white-space: normal; /* Changed from nowrap to normal to allow wrapping */
+                    text-align: center;
+                    display: block;
+                    width: 100%;
+                }
+
+                .affiliation {
+                    font-size: 1.2em;
+                    white-space: normal; /* Changed from nowrap to normal to allow wrapping */
+                    text-align: center;
+                    display: block;
+                    width: 100%;
+                }
+
+                .conference {
+                    font-size: 1.05em; /* Kept proportional */
+                    text-align: center;
+                    display: block;
+                    width: 100%;
+                }
+
+                /* Adjust header info container spacing on mobile */
+                .header-info-container {
+                    margin-bottom: 15px; 
+                }
+
+                /* 3. Aggressively reduce the gap below the buttons */
+                .header {
+                    min-height: auto;
+                    padding: 20px 10px 0px 10px;
+                    margin-bottom: -40px; /* Strong negative margin to pull the TL;DR section up */
                 }
 
                 .publication-links {
                     gap: 8px;
+                    margin-top: 15px;
+                    margin-bottom: 0px; /* Squeezed the bottom margin */
+                }
+    
+                .header::before {
+                        display: none !important; 
+                    }
+                
+                .center-text {
+                    width: 100%;
                 }
 
                 .external-link {
@@ -279,9 +330,38 @@
                     font-size: 0.85em;
                 }
                 
+                /* Fix for out-of-bounds side-by-side images */
+                .side-by-side, .side-by-side2 {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .side-image, .side-image.raw-svg {
+                    max-width: 100% !important;
+                    height: auto;
+                    margin-top: 15px;
+                }
 
-                .author-video {
-                    height: 80px;
+                /* Mobile stacking for cards */
+                .card-container {
+                    grid-template-columns: 1fr;
+                }
+                .card-content {
+                    grid-template-columns: 1fr;
+                }
+                .card {
+                    padding: 16px;
+                }
+
+                /* Mobile table adjustments */
+                table.grid {
+                    display: block;
+                    overflow-x: auto;
+                    padding-bottom: 10px;
+                }
+                .bottom-labels th {
+                    font-size: 0.85em;
+                    transform: translateY(-20px);
                 }
             }
                 
@@ -412,7 +492,7 @@
                 border-spacing: 0 0;
             }
             table.grid td {
-               vertical-align: top;
+                vertical-align: top;
             }    
             .grid img {
                 clip-path: inset(0% 0% 0% 0%);
@@ -595,13 +675,7 @@
             }
         </script>
 
-        <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>-->
-        <!--<script
-            id="MathJax-script"
-            async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        ></script>-->
-    </head>
+        </head>
 
     <body>
         <div class="container">
@@ -613,7 +687,6 @@
                 </h1>
 
 <div class="header-info-container">
-    <!-- <img class="side-gif" src="198hz.gif" alt="modal vibration"> -->
     <div class="center-text">
         <div class="authors">
             <a href="https://www.weizmann.ac.il/math/bagon/home">Shai Bagon</a>,
@@ -624,8 +697,7 @@
         <div class="affiliation">Weizmann Institute of Science</div>
         <div class="conference" style="margin-bottom: 0; margin-top: 10px;">CVPR 2026 (Oral, award candidate &#127942;)</div>
     </div>
-    <!-- <img class="side-gif" src="411hz.gif" alt="modal vibration"> -->
-</div>
+    </div>
 
                 <div class="publication-links">
                     <span class="link-block">
@@ -684,7 +756,6 @@
                                     xmlns="http://www.w3.org/2000/svg" 
                                     viewBox="0 0 640 640"
                                 >
-                                    <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
                                     <path 
                                         fill="currentColor"
                                         d="M160 288C160 199.6 231.6 128 320 128C408.4 128 480 199.6 480 288L480 325.5C470 322 459.2 320 448 320L432 320C405.5 320 384 341.5 384 368L384 496C384 522.5 405.5 544 432 544L448 544C501 544 544 501 544 448L544 288C544 164.3 443.7 64 320 64C196.3 64 96 164.3 96 288L96 448C96 501 139 544 192 544L208 544C234.5 544 256 522.5 256 496L256 368C256 341.5 234.5 320 208 320L192 320C180.8 320 170 321.9 160 325.5L160 288z"
@@ -717,41 +788,6 @@
                                 </svg>
                             </span>
                             <span>Code</span>
-                        </a>
-                    </span>
-
-                    <span class="link-block">
-                        <a
-                            href="#"
-                            class="external-link"
-                            target="_blank"
-                            style="background-color: #e3e3e3"
-                        >
-                            <span class="icon">
-                                <svg
-                                    aria-hidden="true"
-                                    focusable="false"
-                                    role="img"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 76.594292 98.560303"
-                                >
-                                    <g transform="translate(384.93568,-116.20738)">
-                                        <path
-                                            fill="currentColor"
-                                            d="m -309.7763,155.26146 a 38.296535,13.343443 0 0 1 -36.86235,9.79156 38.296535,13.343443 0 0 1 -36.86235,-9.79073 38.296535,13.343443 0 0 0 -1.43247,3.54089 h -0.002 v 0.0104 12.13034 0.001 a 38.296535,13.343443 0 0 0 5.2e-4,0 38.296535,13.343443 0 0 0 38.29637,13.34167 38.296535,13.343443 0 0 0 38.29585,-13.34167 h 0.001 v -12.14291 h -0.001 a 38.296535,13.343443 0 0 0 -1.4335,-3.54172 z"
-                                        />
-                                        <path
-                                            fill="currentColor"
-                                            d="m -346.63879,116.20738 a 38.296535,10.254843 0 0 0 -38.29482,10.2464 h -0.002 v 0.006 a 38.296535,10.254843 0 0 0 -5.2e-4,0.002 38.296535,10.254843 0 0 0 5.2e-4,0.002 v 1.85828 h -5.2e-4 v 0.0103 12.13052 10e-4 a 38.296535,13.343443 0 0 0 5.2e-4,0 38.296535,13.343443 0 0 0 38.29637,13.34131 38.296535,13.343443 0 0 0 38.29585,-13.34131 h 10e-4 v -4.67775 h 5.1e-4 v -9.33276 h -0.002 a 38.296535,10.254843 0 0 0 -38.29585,-10.2464 z"
-                                        />
-                                        <path
-                                            fill="currentColor"
-                                            d="m -309.7763,185.74128 a 38.296535,13.343443 0 0 1 -36.86235,9.79156 38.296535,13.343443 0 0 1 -36.86235,-9.79071 38.296535,13.343443 0 0 0 -1.43247,3.54086 h -0.002 v 0.0117 12.13033 0.001 a 38.296535,13.343443 0 0 0 5.2e-4,0 38.296535,13.343443 0 0 0 38.29637,13.34166 38.296535,13.343443 0 0 0 38.29585,-13.34166 h 0.001 v -12.14293 h -0.001 a 38.296535,13.343443 0 0 0 -1.4335,-3.54171 z"
-                                        />
-                                    </g>
-                                </svg>
-                            </span>
-                            <span>Data</span>
                         </a>
                     </span>
                     <span class="link-block">
@@ -803,7 +839,6 @@
                     </span>
                 </div>
             </div>
-            <!-- 1. ---------------------------->
             <div class="section">
                 <h1 class="subtitle">
                     <b>TL;DR:</b> We significantly improve speckle-based sound recovery from ordinary, acoustically poor objects by fusing signals from many surface points using a physics-guided vibration model.
@@ -866,7 +901,6 @@
                 <img src="html_assets/OFFICIAL_AUDIO_RESULTS/Golden_SPLIT_single_point_vs_our/golden_SPLIT_single_pnt_vs_our.svg" alt="spectrogram example" class="side-image raw-svg">
             </div>
             <hr>
-            <!-- 2. ---------------------------->
             <div class="section">
                 <h1 class="subtitle">
                     Can't you just average the point signals?
@@ -930,8 +964,6 @@
             </div>
 
             <hr>
-            <!-- 3. ---------------------------->
-
             <div class="section">
                 <h1 class="subtitle">
                     Physics-guided surface vibration model
@@ -1028,7 +1060,6 @@
 
             <hr>
 
-            <!-- Selected Results ---------------------------->
             <div class="section">
                 <h1 class="subtitle">
                     SELECTED RESULTS
@@ -1087,7 +1118,7 @@
                     <img class='spec' loading='lazy' src='html_assets/results/spec/drum6_golden_Ours.svg' alt='spectrogram drum6_golden Ours' />
                     <audio id='aud-drum6_golden-Ours' preload='none' src='html_assets/results/wav/drum6_golden_Ours.wav'></audio>
                   </div>
-                </td>               
+                </td>              
                 </tr>
                 <tr class="bottom-labels">
                     <th>drum</th>
@@ -1204,7 +1235,7 @@
             </table>            
             <p>
                 Our method can also handle non-planar objects:
-            </p>                   
+            </p>                  
                 <table class='grid'>
                 <colgroup>
                     <col class='col-setup'/>
@@ -1310,7 +1341,7 @@
 
             <p>
                 and various materials, like metal:
-            </p>                   
+            </p>                  
                 <table class='grid'>
                 <colgroup>
                     <col class='col-setup'/>
@@ -1368,7 +1399,7 @@
 
             <p>
                 Our system can also handle multiple sound sources:
-            </p>                   
+            </p>                  
                 <table class='grid'>
                 <colgroup>
                     <col class='col-setup'/>
@@ -1442,7 +1473,7 @@
 
             <p>
                 and even provides denoised recordings beyond thin plates (our model's assumption):
-            </p>                   
+            </p>                  
                 <table class='grid'>
                 <colgroup>
                     <col class='col-setup'/>
@@ -1500,7 +1531,6 @@
 
             <hr>
 
-            <!-- How far are we from best solution? -->
             <div class="section">
                 <h1 class="subtitle">How far are we from <i>best possible recovery?</i></h1>
                 <p>
@@ -1581,25 +1611,15 @@
 
             </div>
             <hr>
-            <!-- Insights -->
             <div class="section">
                 <h1 class="subtitle">BTW: How sensitive are you to the recovered modes?</h1>
                 <p>
                     Our method is affected by the quality of the estimated modes. Recovering the modes is easiest from a broadband signal, such as a “clap”, “snap”, or “bang” sound  <b>(click spectrogram (a))</b>. However, using the original recording may work just as well <b>(click spectrogram (b))</b>. </br>Failing to detect some of the modes, may somewhat degrade the reconstruction quality <b>(click spectrogram (c))</b>.
                     Yet, falsely adding spurious mode frequencies introduces pronounced artifacts and unnatural resonances  <b>(click spectrogram (d))</b>.</br>In other words, having the right frequencies matters more than having all of them.
                 </p>
-                <!--p>
-                    Our experiments reveal several interesting factors. 
-                    <ul>
-                        <li> Since our method relies on mode extraction, it performs best on stiff objects exhibiting a `sharp knock sound' upon knocking (simply put: if it knocks -- it works).</li>                         
-                        <li> When the laser point grid spans a larger portion of the vibrating surface, the individual point signals exhibit substantial phase variation across the
-                              dominant modes, thereby making our frequency-dependent phase alignment approach yield notably superior results. </li>
-                    </ul>
-                </p-->
-            </div>
+                </div>
 
             <div class="card-container">
-                <!-- Card 1: Reconstruction using modes from a clap -->
                 <div class="card">
                     <div class="card-content">
                         <img class="spectrum-img" src="html_assets/results/fig_6_html/clap_spectrum_all_modes.png" alt="vibration spectrum from clap">
@@ -1624,7 +1644,6 @@
                     <div class="caption">(a) sound recovery using modes from a "clap" sound</div>
                 </div>
 
-                <!-- Card 2: Reconstruction using modes from signal itself -->
                 <div class="card">
                     <div class="card-content">
                         <img class="spectrum-img" src="html_assets/results/fig_6_html/golden_spectrum_all_modes.png" alt="vibration spectrum from clap">
@@ -1650,7 +1669,6 @@
                     <div class="caption">(b) sound recovery using modes from the signal itself</div>
                 </div>
 
-                <!-- Card 3: removing 20% of the modes -->
                 <div class="card">
                     <div class="card-content">
                         <img class="spectrum-img" src="html_assets/results/fig_6_html/clap_spectrum_excl_modes.png" alt="vibration spectrum from clap - excluding 20% of modes">
@@ -1675,7 +1693,6 @@
                     <div class="caption">(c) removing 20% of the modes</div>
                 </div>
 
-                <!-- Card 4: Adding 20% modes at random -->
                 <div class="card">
                     <div class="card-content">
                         <img class="spectrum-img" src="html_assets/results/fig_6_html/clap_spectrum_incl_modes.png" alt="vibration spectrum from clap - including additional 20% modes">
@@ -1701,7 +1718,6 @@
             </div>
             <hr>
 
-            <!-- BibTex ---------------------------->
             <div class="section" id="BibTeX">
                 <h2>BibTeX</h2>
                 <div class="abstract-box bibtex-container">
